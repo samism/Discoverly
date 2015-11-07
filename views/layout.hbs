@@ -9,6 +9,11 @@
         <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
         <link rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css">
         <link rel='stylesheet' href='/stylesheets/style.css'>
+        <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+        <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+        <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     </head>
     <body>
         {{{ body }}}
@@ -16,7 +21,30 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="javascripts/jquery-1.11.2.min.js"><\/script>')</script>
-
         <script src="javascripts/bootstrap.min.js"></script>
+        <script  type="text/javascript">
+            $(document).ready(function(){
+                var platform = new H.service.Platform({
+                    'app_id': 'habu7uC2upRacruDrUfu',
+                    'app_code': '85_CDKXMNkoraKX54-ZS-g'
+                });
+
+                // Obtain the default map types from the platform object:
+                var defaultLayers = platform.createDefaultLayers();
+
+                // Instantiate (and display) a map object:
+                var map = new H.Map(
+                        document.getElementById('map'),
+                        defaultLayers.normal.map, {
+                            zoom: 10,
+                            center: { lat: 41.83, lng: -87.62 }
+                        });
+
+                var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+
+                $("#map").css("height", $(window).height() + "px").css("width", $(window).width() - 200 + "px");
+            });
+        </script>
     </body>
 </html>
